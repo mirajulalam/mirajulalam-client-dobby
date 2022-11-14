@@ -1,11 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import SignUp from './components/Shared/SignUp/SignUp';
 
 function App() {
   return (
     <div>
-      <h2>
-        hello
-      </h2>
+      <Routes>
+        <Route path="/signup" element={<SignUp/>} />
+      </Routes>
     </div>
   );
 }
