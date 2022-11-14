@@ -8,7 +8,7 @@ const UploadForm = () => {
         
     }
     return (
-        <div className='form-container'>
+        <div className='form-container mt-10'>
             <div>
                 <h2 className='form-title'>Add task</h2>
                 <form onSubmit={handleCreateUser}>

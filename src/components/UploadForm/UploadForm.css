@@ -7,7 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 10px 0px 10px rgba(255, 224, 179, 1);
 }
 
 .form-title {
@@ -59,34 +58,4 @@
 .form-container p{
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.form-line {
-    display: flex;
-    margin-top: 10px;
-}
-
-.form-hr {
-    width: 48%;
-}
-
-.form-google {
-    width: 415px;
-    height: 55px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    border: 1px solid gray;
-    align-items: center;
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-.form-google:hover {
-    border: 2px solid gray;
-}
-
-.form-icon {
-    font-size: 35px;
-    margin-right: 5px;
 }

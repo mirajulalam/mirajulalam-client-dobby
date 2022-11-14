@@ -6,7 +6,7 @@ import auth from '../../../firebase.init';
 import './Header.css';
 
 const Header = () => {
-    const [user] = useAuthState(auth)
+    const [user] = useAuthState(auth);
     const handleSignOut = () => {
         signOut(auth)
     }
@@ -15,9 +15,7 @@ const Header = () => {
             <p>Dobby Application</p>
             <div>
                 <Link to="/">Home</Link>
-                <Link to="/login">login</Link>
-                <Link to="/signup">SignUp</Link>
-                {user ? <button onClick={handleSignOut}>Sign Out</button>
+                {user ? <button onClick={handleSignOut} className="text-white ml-5">Sign Out</button>
                     : <Link to='/login'>Login</Link>
                 }
             </div>
