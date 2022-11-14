@@ -1,9 +1,10 @@
 import React from 'react';
+import UploadForm from '../UploadForm/UploadForm';
 
 const Home = () => {
     return (
         <div>
-            <h1>home</h1>
+            <UploadForm/>
         </div>
     );
 };
