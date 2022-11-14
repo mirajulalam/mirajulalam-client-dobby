@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import './SignUp.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 const SignUp = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useSignInWithEmailAndPassword(auth);
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('')
     const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+
+    const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth)
 
     const handleEmailBlur = event => {
         setEmail(event.target.value)
@@ -23,19 +19,30 @@ const SignUp = () => {
     const handlePasswordBlur = event => {
         setPassword(event.target.value)
     }
+    const handleConfirmPasswordBlur = event => {
+        setConfirmPassword(event.target.value)
+    }
 
     if (user) {
-        navigate(from, { replace: true })
+        navigate('/shop')
     }
-    const handleUserSignIn = event => {
+    const handleCreateUser = event => {
         event.preventDefault();
-        signInWithEmailAndPassword(email, password)
+        // if (password !== confirmPassword) {
+        //     setError('Your two password do not match')
+        //     return;
+        // }
+        if (password.length < 6) {
+            setError('Password must be 6 characters number')
+            return;
+        }
+        createUserWithEmailAndPassword(email, password)
     }
     return (
         <div className='form-container'>
             <div>
-                <h2 className='form-title'>SignUp</h2>
-                <form onSubmit={handleUserSignIn}>
+                <h2 className='form-title'>Sign Up</h2>
+                <form onSubmit={handleCreateUser}>
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
                         <input onBlur={handleEmailBlur} type="email" name="email" id="" required />
@@ -44,18 +51,16 @@ const SignUp = () => {
                         <label htmlFor="password">Password</label>
                         <input onBlur={handlePasswordBlur} type="password" name="password" id="" required />
                     </div>
-                    <p style={{ color: 'red' }}>{error?.message}</p>
-                    {
-                        loading && <p>Loading...</p>
-                    }
+                    <div className="input-group">
+                        <label htmlFor="confirm-password">Confirm Password</label>
+                        <input onClick={handleConfirmPasswordBlur} type="password" name="confirm-password" id="" required />
+                    </div>
+                    <p style={{ color: 'red' }}>{error}</p>
                     <input className='form-submit' type="submit" value="Login" />
                 </form>
                 <p>
-                    New to Ema-John?<Link className='form-link' to='/signup'>Create an account</Link>
+                    Already have an account?<Link className='form-link' to='/login'> Login</Link>
                 </p>
-                <div className='form-line'>
-                    <hr className='form-hr' /> or<hr className='form-hr' />
-                </div>
             </div>
         </div>
     );
