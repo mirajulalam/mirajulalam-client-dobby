@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/Home/Home';
 import Header from './components/Shared/Header/Header';
 import Login from './components/Shared/Login/Login';
+import PrivateRoute from './components/Shared/PrivateRoute/PrivateRoute';
 import SignUp from './components/Shared/SignUp/SignUp';
 
 function App() {
@@ -10,7 +11,11 @@ function App() {
     <div>
       <Header/>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={
+        <PrivateRoute>
+          <Home/>
+        </PrivateRoute>
+      } />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
       </Routes>
