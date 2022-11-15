@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import AllTask from './components/AllTask/AllTask';
 import Home from './components/Home/Home';
 import Header from './components/Shared/Header/Header';
 import Login from './components/Shared/Login/Login';
@@ -16,6 +17,12 @@ function App() {
           <Home/>
         </PrivateRoute>
       } />
+        <Route path="/alltask" element={
+          <PrivateRoute>
+            <AllTask/>
+          </PrivateRoute>
+        
+        } />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
       </Routes>

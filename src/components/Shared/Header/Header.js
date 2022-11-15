@@ -15,6 +15,7 @@ const Header = () => {
             <p>Dobby Application</p>
             <div>
                 <Link to="/">Home</Link>
+                <Link to="/alltask">Images</Link>
                 {user ? <button onClick={handleSignOut} className="text-white ml-5">Sign Out</button>
                     : <Link to='/login'>Login</Link>
                 }
