@@ -3,6 +3,7 @@ import "../SignUp/SignUp.css";
 import { Link, useLocation, useNavigate} from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import Spinner from '../Spinner/Spinner';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -22,6 +23,9 @@ const Login = () => {
     }
     const handlePasswordBlur = event => {
         setPassword(event.target.value)
+    }
+    if(loading){
+        return <Spinner/>
     }
 
     if (user) {
